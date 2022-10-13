@@ -14,11 +14,17 @@ app.get("/",function(req,res){
         const weatherData= JSON.parse(data); //data hex turn to js
         const temp= weatherData.main.feels_like;
         const des= weatherData.weather[0].description;//item hold byb 0 cos only 1item of weather
-            console.log(temp);
-            console.log(des);
+        const icon= weatherData.weather[0].icon;
+       
+        const imageURL="http://openweathermap.org/img/wn/"+ icon +"@2x.png";
+        res.write("<p>The Weather is currently "+des+ " </p>");
+         res.write("<h1>The temparature in Delft is "+ temp + " degree Celcius </h1>");
+         res.write("<img src= "+ imageURL+ " >");
+        res.send();
+         
     })
     }); 
-    res.send("Server is up and running");
+    
 }); //user go to homepage
 
 
