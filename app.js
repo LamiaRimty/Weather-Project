@@ -1,4 +1,4 @@
-const { query } = require("express");
+//const { query } = require("express");
 const express = require("express");
 const app = express();
 const https=require("https");
@@ -17,7 +17,8 @@ app.post("/",function(req,res){  //to catch post req
   const query= req.body.cityName;
     const apiKey="629f0c4e6dea1615eab7d478100e7a35";
     const unit ="metric";
-    const url="https://api.openweathermap.org/data/2.5/weather?q= "+ query + "&appid=" +apiKey + "&units= "+ unit;
+    const url ="https://api.openweathermap.org/data/2.5/weather?q="+ query +"&appid=" + apiKey+ "&units=" + unit;
+    //const url="https://api.openweathermap.org/data/2.5/weather?q= "+ query + "&appid=" + apiKey + "&units= "+ unit;
     
     https.get(url,function(response){  //callback func give us back response.
     
@@ -29,8 +30,8 @@ app.post("/",function(req,res){  //to catch post req
         const icon= weatherData.weather[0].icon;
        
         const imageURL="http://openweathermap.org/img/wn/"+ icon +"@2x.png";
-        res.write("<p>The Weather is currently "+des+ " </p>");
          res.write("<h1>The temparature in "+query +" is "+ temp + " degree Celcius </h1>");
+         res.write("<h2>The Weather is currently "+des+ " </h3>");
          res.write("<img src= "+ imageURL+ " >");
         res.send();
          
